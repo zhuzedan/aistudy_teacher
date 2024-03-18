@@ -44,5 +44,6 @@ export default {
 
 .el-main {
   background-color: #F5F7FE;
+  padding: 0 !important;
 }
 </style>
