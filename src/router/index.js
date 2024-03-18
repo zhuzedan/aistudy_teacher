@@ -22,6 +22,11 @@ const routes = [
                     requireAuth: true
                 }
             },
+            {
+                path: '/course/:name',
+                name: 'course',
+                component: () => import("@/views/course/Course.vue")
+            }
         ]
     },
     {

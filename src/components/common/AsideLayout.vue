@@ -2,11 +2,7 @@
   <div class="aside">
     <el-col :span="12">
       <el-menu
-          text-color="#fff"
-          unique-opened
-          router
           :collapse="isCollapse"
-          @select="handleSelect"
           @open="handleOpen"
           @close="handleClose">
         <a href="/" class="logo">
@@ -20,6 +16,7 @@
             :class="['source_frame', { 'source_frame_select': course.isActive }]"
             @mouseover="setActiveCourse(index)"
             @mouseleave="resetActiveCourse"
+            @click="goToCourse(course)"
         >
           <div class="partial-border-left" v-if="course.isActive"></div>
           <img src="../../assets/class_avatar.png" alt=""/>
@@ -62,9 +59,6 @@ export default {
     }
   },
   methods: {
-    handleSelect(key, keyPath) {
-      this.activeIndex = key
-    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -86,7 +80,10 @@ export default {
         course.isActive = false;
       });
       this.activeCourseIndex = -1;
-    }
+    },
+    goToCourse(course) { // 新增方法处理点击事件
+      this.$router.push(`/course/${course.name}`); // 假设将课程名称作为参数传递给 /course 路由
+    },
   },
   computed: {
     isCollapse() {
