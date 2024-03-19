@@ -119,6 +119,7 @@ export default {
   min-height: calc(100vh - 100px - 60px);
 
   .students {
+    box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.25);
     display: flex;
     position: relative;
     width: 100%;
@@ -136,6 +137,7 @@ export default {
   }
 
   .question {
+    box-shadow: 0 2px 4px  rgba(0, 0, 0, 0.25);
     display: flex;
     position: relative;
     width: 100%;

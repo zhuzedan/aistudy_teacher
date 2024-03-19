@@ -2,10 +2,11 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="16">
-        <div class="grid-content bg-purple"></div>
+        <div class="grid-content">
+        </div>
       </el-col>
       <el-col :span="8">
-        <div class="grid-content bg-purple">
+        <div class="grid-content">
 
         </div>
       </el-col>
@@ -33,11 +34,8 @@ export default {
   border-radius: 4px;
 }
 
-.bg-purple {
-  background: #ffffff;
-}
-
 .grid-content {
+  background: #ffffff;
   border-radius: 4px;
   min-height: calc(100vh - 100px - 60px);
 }
