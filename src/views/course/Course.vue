@@ -9,7 +9,9 @@
         <home-work></home-work>
       </el-tab-pane>
       <el-tab-pane label="试卷设计" name="fourth">试卷设计</el-tab-pane>
-      <el-tab-pane label="AI形象" name="fifth">AI形象</el-tab-pane>
+      <el-tab-pane label="AI形象" name="fifth">
+        <ai-figure></ai-figure>
+      </el-tab-pane>
 
     </el-tabs>
 
@@ -19,11 +21,13 @@
 <script>
 import CourseComplete from "@/views/course/CourseComplete";
 import HomeWork from "@/views/course/HomeWork";
+import AiFigure from "@/views/course/AiFigure.vue";
 export default {
   name: "Course",
   components: {
     CourseComplete,
-    HomeWork
+    HomeWork,
+    AiFigure
   },
   data() {
     return {
