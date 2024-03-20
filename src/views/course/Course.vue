@@ -4,7 +4,9 @@
       <el-tab-pane label="课程完成情况" name="first">
         <course-complete></course-complete>
       </el-tab-pane>
-      <el-tab-pane label="学生信息" name="second">学生信息</el-tab-pane>
+      <el-tab-pane label="学生信息" name="second">
+        <student-information></student-information>
+      </el-tab-pane>
       <el-tab-pane label="作业评分" name="third">
         <home-work></home-work>
       </el-tab-pane>
@@ -22,12 +24,14 @@
 import CourseComplete from "@/views/course/CourseComplete";
 import HomeWork from "@/views/course/HomeWork";
 import AiFigure from "@/views/course/AiFigure.vue";
+import StudentInformation from "@/views/course/StudentInformation.vue";
 export default {
   name: "Course",
   components: {
     CourseComplete,
     HomeWork,
-    AiFigure
+    AiFigure,
+    StudentInformation
   },
   data() {
     return {
