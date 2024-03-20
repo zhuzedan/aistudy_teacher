@@ -5,7 +5,7 @@
       <i class="el-icon-s-operation" style="font-size: 24px;margin-left: 10px"></i>
     </div>
     <div class="student_container">
-      <div class="block" v-for="(student, index) in students" :key="index">
+      <div @click="dialogTableVisible = true" class="block" v-for="(student, index) in students" :key="index">
         <el-avatar :size="70" :src="student.avatarUrl || circleUrl"></el-avatar>
         <div class="name">{{ student.name }}</div>
         <div class="class_num">{{ student.classNum }}</div>
@@ -18,13 +18,42 @@
           :total="50">
       </el-pagination>
     </div>
+    <el-dialog
+        title="测试标题"
+        :visible.sync="dialogTableVisible"
+        append-to-body
+        top="2"
+    >
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <div class="grid-content">
+            顺序存储与链式存储优缺点
+          </div>
+        </el-col>
+        <el-col :span="16">
+          <div class="grid-content"></div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="24">
+          <div class="grid-chart"></div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="24">
+          <div class="grid-summary">总结</div>
+        </el-col>
+      </el-row>
+    </el-dialog>
   </div>
 </template>
 <script>
 export default {
   name: "StudentInformation",
+  components: {},
   data() {
     return {
+      dialogTableVisible: false,
       studentCount: '30',
       students: [], // 新增：初始化一个空数组存放学生数据
       input: '',
@@ -40,7 +69,8 @@ export default {
         avatarUrl: this.circleUrl,
       });
     }
-  }
+  },
+  methods: {}
 }
 </script>
 
@@ -93,5 +123,39 @@ export default {
   right: 20px;
   bottom: 20px;
   z-index: 1;
+}
+
+.el-row {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.el-col {
+  border-radius: 4px;
+}
+
+.el-dialog__body {
+  padding: 0 20px 0 20px;
+}
+
+.grid-content {
+  border-radius: 4px;
+  min-height: 300px;
+  background: @primaryBackgroundColor;
+}
+
+.grid-chart {
+  height: 200px;
+  border-radius: 4px;
+  background: @primaryBackgroundColor;
+}
+
+.grid-summary {
+  border-radius: 4px;
+  background: @primaryBackgroundColor;
+  height: 150px;
 }
 </style>
