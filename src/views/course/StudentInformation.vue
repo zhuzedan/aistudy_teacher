@@ -22,7 +22,6 @@
         title="测试标题"
         :visible.sync="dialogTableVisible"
         append-to-body
-        top="2"
     >
       <el-row :gutter="20">
         <el-col :span="8">

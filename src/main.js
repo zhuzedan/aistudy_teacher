@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import VueAxios from 'axios-vue';
 import * as echarts from 'echarts';
+import '@/theme/font.less' // 引入思源字体
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

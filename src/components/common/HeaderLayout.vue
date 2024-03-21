@@ -4,12 +4,12 @@
       <div class="change-icon" @click="toggleCollapse">
         <i :class="iconName"></i>
       </div>
-      <span>首页</span>
+      <div>首页</div>
     </div>
     <div class="header_right">
       <el-dropdown>
         <span class="el-dropdown-link">
-          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+          <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" alt=""/>
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">

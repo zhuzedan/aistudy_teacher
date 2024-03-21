@@ -3,28 +3,35 @@
     <el-col :span="12">
       <el-menu
           :collapse="isCollapse"
+          class="el-menu-vertical-demo"
+          unique-opened
+          router
           @open="handleOpen"
           @close="handleClose">
         <a href="/" class="logo">
           <img src="@/assets/logo.png" alt=""/>
-          <div class="logo_text" v-if="!isCollapse">AiStudy</div>
+          <div class="logo_text" v-if="!isCollapse">iStudy</div>
         </a>
-        <!-- 使用v-for遍历课程列表 -->
-        <div
-            v-for="(course, index) in courses"
-            :key="index"
-            :class="['source_frame', { 'source_frame_select': course.isActive }]"
-            @mouseover="setActiveCourse(index)"
-            @mouseleave="resetActiveCourse"
-            @click="goToCourse(course)"
-        >
-          <div class="partial-border-left" v-if="course.isActive"></div>
-          <img src="../../assets/class_avatar.png" alt=""/>
-          <div class="course">
-            <div class="course_name">{{ course.name }}</div>
-            <div class="course_class_name">{{ course.className }}</div>
-          </div>
-        </div>
+        <el-menu-item>
+          <i class="el-icon-menu"></i>
+          <span slot="title">仪表盘</span>
+        </el-menu-item>
+        <el-submenu index="1">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>班级管理</span>
+          </template>
+            <el-menu-item index="1-1">授课班级</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title">导航二</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">导航四</span>
+        </el-menu-item>
       </el-menu>
     </el-col>
   </div>
@@ -65,25 +72,6 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    setActiveCourse(index) {
-      this.courses.forEach((course, i) => {
-        if (i === index) {
-          course.isActive = true;
-        } else {
-          course.isActive = false;
-        }
-      });
-      this.activeCourseIndex = index;
-    },
-    resetActiveCourse() {
-      this.courses.forEach(course => {
-        course.isActive = false;
-      });
-      this.activeCourseIndex = -1;
-    },
-    goToCourse(course) { // 新增方法处理点击事件
-      this.$router.push(`/course/${course.name}`); // 假设将课程名称作为参数传递给 /course 路由
-    },
   },
   computed: {
     isCollapse() {
@@ -109,12 +97,9 @@ export default {
   .logo_text {
     margin-left: 10px;
     font-size: 30px;
-    font-weight: bold;
+    //font-weight: bold;
+    font-family: HanSansBold,serif;
   }
-}
-
-.el-menu-item {
-  color: #0177FD;
 }
 
 .el-menu {
@@ -145,7 +130,7 @@ export default {
     position: relative; /* 确保伪元素基于此元素定位 */
     width: 3px;
     height: 34px;
-    background-color: #0177FD;
+    background-color: @primaryColor;
     border-radius: 0 3.66px 3.66px 0;
   }
 
@@ -155,7 +140,7 @@ export default {
   }
 
   .course {
-    color: #0177FD;
+    color: @primaryColor;
     margin-left: 20px;
 
     .course_name {
@@ -164,7 +149,7 @@ export default {
 
     .course_class_name {
       margin-top: 5px;
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 
@@ -200,22 +185,8 @@ export default {
 
     .course_class_name {
       margin-top: 5px;
-      font-size: 12px;
+      font-size: 14px;
     }
-  }
-}
-
-.source_frame_select {
-  background-color: #E5F1FF;
-  color: #0177FD;
-
-  .course_name,
-  .course_class_name {
-    color: #0177FD;
-  }
-
-  .partial-border-left {
-    background-color: #0177FD;
   }
 }
 
@@ -226,13 +197,5 @@ export default {
     background-color: #E5F1FF;
   }
 
-  /* 当前选中项之外的其他项的默认样式 */
-
-  &.source_frame:not(.source_frame_select):hover {
-    .course_name,
-    .course_class_name {
-      color: #0177FD;
-    }
-  }
 }
 </style>

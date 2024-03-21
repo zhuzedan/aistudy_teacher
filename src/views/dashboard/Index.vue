@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import * as echarts from 'echarts';
 
 export default {
   data() {
@@ -90,24 +89,24 @@ export default {
     },
   },
   mounted() {
-    this.initChart();
+    // this.initChart();
   },
   methods: {
-    initChart() {
-      // 获取DOM容器
-      const container = this.$refs.chartContainer;
-      // 初始化echarts实例
-      this.chartInstance = echarts.init(container);
-      // 载入图表配置项
-      this.chartInstance.setOption(this.options);
-    }
+    // initChart() {
+    //   // 获取DOM容器
+    //   const container = this.$refs.chartContainer;
+    //   // 初始化echarts实例
+    //   this.chartInstance = echarts.init(container);
+    //   // 载入图表配置项
+    //   this.chartInstance.setOption(this.options);
+    // }
   },
   beforeDestroy() {
     // 在组件销毁前清理echarts实例
-    if (this.chartInstance) {
-      this.chartInstance.dispose();
-      this.chartInstance = null;
-    }
+    // if (this.chartInstance) {
+    //   this.chartInstance.dispose();
+    //   this.chartInstance = null;
+    // }
   }
 };
 </script>
@@ -142,7 +141,7 @@ export default {
 
       .course_name {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
         margin-left: 24px;
         margin-top: 10px;
       }
@@ -150,7 +149,7 @@ export default {
       .course_class {
         margin-left: 24px;
         margin-top: 6px;
-        font-size: 12px;
+        font-size: 14px;
       }
     }
 
@@ -164,7 +163,7 @@ export default {
 
       .attention {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
         margin-left: 24px;
         margin-top: 10px;
         margin-bottom: 10px;
