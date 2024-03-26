@@ -13,24 +13,20 @@
           <div class="logo_text" v-if="!isCollapse">iStudy</div>
         </a>
         <el-menu-item>
-          <i class="el-icon-menu"></i>
-          <span slot="title">仪表盘</span>
+          <i class="el-icon-folder-opened"></i>
+          <span slot="title">智能助教</span>
         </el-menu-item>
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>班级管理</span>
-          </template>
-            <el-menu-item index="1-1">授课班级</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-submenu>
+        <el-menu-item index="1">
+            <i class="el-icon-postcard"></i>
+            <span slot="title">班级管理</span>
+        </el-menu-item>
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
+          <span slot="title">课程管理</span>
         </el-menu-item>
         <el-menu-item index="4">
           <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
+          <span slot="title">账户管理</span>
         </el-menu-item>
       </el-menu>
     </el-col>

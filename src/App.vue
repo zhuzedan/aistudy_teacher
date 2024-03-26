@@ -9,7 +9,10 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: HanSans,serif;
-  //font-family: "HanSans","Microsoft YaHei","黑体","宋体",sans-serif;
+  font-size: 14px;
+  font-family: HanSans, serif;
+  background-color: #f5f6f8;
+  display: flex;
+  flex-direction: column;
 }
 </style>
