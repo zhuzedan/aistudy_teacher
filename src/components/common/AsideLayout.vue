@@ -8,15 +8,15 @@
           router
           @open="handleOpen"
           @close="handleClose">
-        <a href="/" class="logo">
+        <router-link to="/" class="logo">
           <img src="@/assets/logo.png" alt=""/>
           <div class="logo_text" v-if="!isCollapse">iStudy</div>
-        </a>
-        <el-menu-item>
+        </router-link>
+        <el-menu-item index="/">
           <i class="el-icon-folder-opened"></i>
           <span slot="title">智能助教</span>
         </el-menu-item>
-        <el-menu-item index="1">
+        <el-menu-item index="class">
             <i class="el-icon-postcard"></i>
             <span slot="title">班级管理</span>
         </el-menu-item>
