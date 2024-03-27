@@ -1,7 +1,7 @@
 <template>
   <div class="aside">
     <el-col :span="12">
-      <el-menu
+      <el-menu :default-active="currentMenuIndex" @select="handleSelect"
           :collapse="isCollapse"
           class="el-menu-vertical-demo"
           unique-opened
@@ -38,6 +38,7 @@ export default {
   name: "AsideLayout",
   data() {
     return {
+      currentMenuIndex: '/',
       activeCourseIndex: -1,
       courses: [
         {
@@ -62,6 +63,10 @@ export default {
     }
   },
   methods: {
+    // 选中的路由
+    handleSelect(index) {
+      this.currentMenuIndex = index;
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },

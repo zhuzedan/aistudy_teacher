@@ -1,7 +1,48 @@
 <template>
   <div class="index_container">
-    <div class="container_box">
-      <div class="course_box" v-for="index in 12">
+    <!--一行筛选栏-->
+    <el-row>
+      <el-col :span="6">
+        <div class="select_words">学期</div>
+        <el-select v-model="selectTerm" size="small" placeholder="请选择学期">
+          <el-option
+              v-for="item in termList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="6">
+        <div class="select_words">学院</div>
+        <el-select v-model="selectDept" size="small" placeholder="请选择学院">
+          <el-option
+              v-for="item in deptList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="6">
+        <div class="select_words">班级</div>
+        <el-select v-model="selectClass" size="small" placeholder="请选择班级">
+          <el-option
+              v-for="item in classList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="6">
+        <el-button size="small" icon="el-icon-search" type="primary">搜索</el-button>
+        <el-button size="small" icon="el-icon-refresh" type="info">重置</el-button>
+      </el-col>
+    </el-row>
+    <div class="container_box" :style="{width: totalCourseBoxWidth}">
+      <!--班级分析开始-->
+      <div class="course_box" :style="{ height: courseBoxHeight, width: courseBoxWidth }" v-for="index in courseBoxCount">
         <div class="course_three_btn">
           <div class="btn_style">班级看板</div>
           <div class="btn_style">学生详情</div>
@@ -48,6 +89,7 @@
           <div class="attention_text">xx的作业情况堪忧</div>
         </div>
       </div>
+      <!--班级分析结束-->
     </div>
   </div>
 </template>
@@ -57,6 +99,58 @@
 export default {
   data() {
     return {
+      selectTerm: '',
+      selectDept: '',
+      selectClass: '',
+      deptList: [{
+        value: '选项1',
+        label: '数字技术与工程学院'
+      }, {
+        value: '选项2',
+        label: '人文学院'
+      }, {
+        value: '选项3',
+        label: '金融与信息学院'
+      }, {
+        value: '选项4',
+        label: '艺术设计学院'
+      }, {
+        value: '选项5',
+        label: '基础学院'
+      }],
+      classList: [
+        {
+          value: '选项5',
+          label: '23计科1'
+        },
+        {
+          value: '选项123',
+          label: '23计科2'
+        }
+      ],
+      termList: [
+        {
+          value: '选项1',
+          label: '2023-2024-01'
+        },
+        {
+          value: '选项2',
+          label: '2023-2024-02'
+        },
+        {
+          value: '选项3',
+          label: '2022-2023-01'
+        },
+        {
+          value: '选项4',
+          label: '2022-2023-02'
+        }
+      ],
+      scrollTimer: null, // 新增用于滚动事件延时执行的定时器
+      //响应式box高度
+      courseBoxHeight: '660px',
+      courseBoxWidth: '310px',
+      totalCourseBoxWidth: '330px',
       selectDate: [{
         value: '选项1',
         label: '近一周'
@@ -71,7 +165,7 @@ export default {
         label: '进一学期'
       }],
       value: '',
-      courseBoxCount: 5,
+      courseBoxCount: 12,
       chartInstance: null,
       options: { // 这里放置你的图表配置项
         title: {
@@ -91,32 +185,74 @@ export default {
     };
   },
   computed: {
-    containerWidth() {
-      return (300 + 20) * this.courseBoxCount + 20; // 计算总宽度（每个course_box宽度300px，间距20px，除去最后一个box的右边距）
-    },
   },
   mounted() {
-
+    this.setCourseBoxSize();
+    window.addEventListener('resize', this.setCourseBoxSize);
+    document.addEventListener('scroll', this.handleScroll);
   },
-  methods: {},
+  beforeDestroy() {
+    window.removeEventListener('resize', this.setCourseBoxSize);
+    document.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    setCourseBoxSize() {
+      const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      const windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      console.log('windowWidth',windowWidth)
+      // 根据你的设计需求计算合适的高度值(header60+上边距20+下边距20)
+      const calculatedHeight = windowHeight - 200;
+      const calculatedWidth = windowWidth * 0.17;
+      console.log('calculateHeight',calculatedHeight)
+      console.log('windowHeight',windowHeight)
+      this.courseBoxHeight = `${calculatedHeight}px`;
+      this.courseBoxWidth = `${calculatedWidth}px`;
+      const totalCourseBoxWidth = calculatedWidth * this.courseBoxCount;
+      this.totalCourseBoxWidth = `${totalCourseBoxWidth}px`;
+    },
+    handleScroll() {
+      // 在滚动事件中只计算一次，避免过于频繁
+      clearTimeout(this.scrollTimer);
+      this.scrollTimer = setTimeout(() => {
+        this.setCourseBoxSize();
+      }, 100); // 延迟100ms执行，可以根据实际情况调整
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
 .index_container {
-  position: relative;
-  display: flex;
-  align-items: center;
+  //position: relative;
+  //display: flex;
+  flex-direction: column;
   height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
 
-  .container_box {
-    position: relative;
-    display: flex;
-    align-items: center;
+  .el-row {
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #fff;
+    margin: 15px 20px 0 15px;
 
-    //background-color: palegreen;
+    .el-col {
+      display: flex;
+
+      .select_words {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .el-select {
+    margin-left: 10px;
+  }
+
+  .container_box {
+    display: flex;
 
     .course_box {
       display: flex;
@@ -136,6 +272,7 @@ export default {
         position: relative;
         justify-content: space-between;
         width: 90%;
+        height: 5%;
         padding: 10px;
 
         .btn_style {
@@ -154,7 +291,7 @@ export default {
 
       .course_top {
         width: 84%;
-        height: 150px;
+        height: 20%;
         padding: 10px;
         background-color: #ffffff;
         border-radius: 8px;
@@ -179,7 +316,7 @@ export default {
 
       .course_analysis {
         width: 84%;
-        height: 250px;
+        height: 30%;
         padding: 10px;
         background-color: #ffffff;
         border-radius: 8px;
@@ -211,7 +348,7 @@ export default {
 
       .course_bottom {
         width: 84%;
-        height: 220px;
+        height: 35%;
         padding: 10px;
         background-color: #ffffff;
         border-radius: 8px;
@@ -249,5 +386,7 @@ export default {
       }
     }
   }
+
+
 }
 </style>
