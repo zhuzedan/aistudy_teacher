@@ -201,7 +201,7 @@ export default {
       const windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
       console.log('windowWidth',windowWidth)
       // 根据你的设计需求计算合适的高度值(header60+上边距20+下边距20)
-      const calculatedHeight = windowHeight - 200;
+      const calculatedHeight = windowHeight - 230;
       const calculatedWidth = windowWidth * 0.17;
       console.log('calculateHeight',calculatedHeight)
       console.log('windowHeight',windowHeight)
@@ -234,7 +234,7 @@ export default {
     border-radius: 4px;
     padding: 20px;
     background-color: #fff;
-    margin: 15px 20px 0 15px;
+    margin: 20px 20px 0 20px;
 
     .el-col {
       display: flex;

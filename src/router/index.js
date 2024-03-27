@@ -28,6 +28,11 @@ const routes = [
                 component: () => import("@/views/class/ClassIndex.vue")
             },
             {
+                path: 'course',
+                name: 'course',
+                component: () => import("@/views/course/Course.vue")
+            },
+            {
                 path: '/course/:name',
                 name: 'course',
                 component: () => import("@/views/course/Course.vue")
