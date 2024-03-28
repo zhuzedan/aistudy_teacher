@@ -45,7 +45,7 @@
       <div class="course_box" :style="{ height: courseBoxHeight, width: courseBoxWidth }"
            v-for="index in courseBoxCount">
         <div class="course_three_btn">
-          <div class="btn_style">班级看板</div>
+          <div class="btn_style" @click="gotoClassBoard">班级看板</div>
           <div class="btn_style">学生详情</div>
           <div class="btn_style">进入备课</div>
         </div>
@@ -193,6 +193,9 @@ export default {
     document.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    gotoClassBoard() {
+      this.$router.push('/classBoard')
+    },
     setCourseBoxSize() {
       const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
       const windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
@@ -268,6 +271,7 @@ export default {
         text-align: center;
         position: relative;
         justify-content: space-between;
+        cursor: pointer;
         width: 90%;
         height: 5%;
         padding: 10px;

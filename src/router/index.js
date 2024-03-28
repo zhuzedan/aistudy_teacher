@@ -16,11 +16,16 @@ const routes = [
             // 设置菜单列表的路由
             {
                 path: '',
-                name: 'dashboard',
+                name: 'index',
                 component: () => import("@/views/dashboard/Index.vue"),
                 meta: {
                     requireAuth: true
                 }
+            },
+            {
+                path: 'classBoard',
+                name: 'classBoard',
+                component: () => import("@/views/dashboard/ClassBoard.vue")
             },
             {
                 path: 'class',
@@ -48,7 +53,7 @@ const routes = [
 
 const router = new VueRouter({
     routes,
-    mode:'hash'
+    mode: 'hash'
 })
 
 export default router
