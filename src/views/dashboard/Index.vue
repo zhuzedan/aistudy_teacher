@@ -1,7 +1,7 @@
 <template>
   <div class="index_container">
     <!--一行筛选栏-->
-    <el-row>
+    <el-row :span="24">
       <el-col :span="6">
         <div class="select_words">学期</div>
         <el-select v-model="selectTerm" size="small" placeholder="请选择学期">
@@ -42,7 +42,8 @@
     </el-row>
     <div class="container_box" :style="{width: totalCourseBoxWidth}">
       <!--班级分析开始-->
-      <div class="course_box" :style="{ height: courseBoxHeight, width: courseBoxWidth }" v-for="index in courseBoxCount">
+      <div class="course_box" :style="{ height: courseBoxHeight, width: courseBoxWidth }"
+           v-for="index in courseBoxCount">
         <div class="course_three_btn">
           <div class="btn_style">班级看板</div>
           <div class="btn_style">学生详情</div>
@@ -54,7 +55,7 @@
           <div class="course_class">22媒体技术1(52人)</div>
           <div class="course_process">课程进度</div>
           <el-progress :percentage="50"></el-progress>
-          <div class="course_class">正在进行二分查找</div>
+<!--          <div class="course_class">正在进行二分查找</div>-->
         </div>
         <!--薄弱点分析-->
         <div class="course_analysis">
@@ -71,9 +72,6 @@
           </div>
           <div class="analysis_detail_box">
             <div class="analysis_detail" v-for="index in 3">1. 顺序存储与链式存储优缺点</div>
-            <div class="analysis_detail">1. 顺序存储与链式存储优缺点</div>
-            <div class="analysis_detail">1. 顺序存储与链式存储优缺点</div>
-            <div class="analysis_detail">1. 顺序存储与链式存储优缺点</div>
           </div>
         </div>
         <!--注意事项-->
@@ -184,8 +182,7 @@ export default {
       }
     };
   },
-  computed: {
-  },
+  computed: {},
   mounted() {
     this.setCourseBoxSize();
     window.addEventListener('resize', this.setCourseBoxSize);
@@ -199,13 +196,13 @@ export default {
     setCourseBoxSize() {
       const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
       const windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
-      console.log('windowWidth',windowWidth)
+      console.log('windowWidth', windowWidth)
       // 根据你的设计需求计算合适的高度值(header60+上边距20+下边距20)
-      const calculatedHeight = windowHeight - 230;
-      const calculatedWidth = windowWidth * 0.17;
-      console.log('calculateHeight',calculatedHeight)
-      console.log('windowHeight',windowHeight)
-      this.courseBoxHeight = `${calculatedHeight}px`;
+      const calculatedHeight = windowHeight - 210;
+      const calculatedWidth = windowWidth * 0.2;
+      console.log('calculateHeight', calculatedHeight)
+      console.log('windowHeight', windowHeight)
+      // this.courseBoxHeight = `${calculatedHeight}px`;
       this.courseBoxWidth = `${calculatedWidth}px`;
       const totalCourseBoxWidth = calculatedWidth * this.courseBoxCount;
       this.totalCourseBoxWidth = `${totalCourseBoxWidth}px`;
@@ -225,9 +222,9 @@ export default {
   //position: relative;
   //display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100vh - 60px);
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   white-space: nowrap;
 
   .el-row {
@@ -296,6 +293,7 @@ export default {
         background-color: #ffffff;
         border-radius: 8px;
         margin-bottom: 16px;
+        overflow-y: auto;
 
         .course_name {
           font-weight: bold;

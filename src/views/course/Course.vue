@@ -3,8 +3,8 @@
     <div class="class_box">
       <div class="class_box_inner">
         <!--一行筛选栏-->
-        <el-row>
-          <el-col :span="4">
+        <el-row :span="24">
+          <el-col :span="6">
             <div class="select_words">学期</div>
             <el-select v-model="selectTerm" size="small" placeholder="请选择学期">
               <el-option
@@ -15,7 +15,7 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="6">
             <div class="select_words">学院</div>
             <el-select v-model="selectDept" size="small" placeholder="请选择学院">
               <el-option
@@ -26,7 +26,7 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="6">
             <div class="select_words">班级</div>
             <el-select v-model="selectClass" size="small" placeholder="请选择班级">
               <el-option
@@ -37,7 +37,7 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="6">
             <el-button size="small" icon="el-icon-search" type="primary">搜索</el-button>
             <el-button size="small" icon="el-icon-refresh" type="info">重置</el-button>
           </el-col>
@@ -247,7 +247,7 @@ export default {
     background-color: @primaryBackgroundColor;
 
     .class_box_inner {
-      padding: 20px 40px;
+      padding: 20px;
 
       .el-row {
         background-color: #fff;
