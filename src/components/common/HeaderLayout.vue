@@ -4,7 +4,8 @@
       <div class="change-icon" @click="toggleCollapse">
         <i :class="iconName"></i>
       </div>
-      <div>首页</div>
+      <!--面包屑 晚点做-->
+      <!--<div>首页</div>-->
     </div>
     <div class="header_right">
       <el-dropdown>
