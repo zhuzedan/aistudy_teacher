@@ -23,9 +23,9 @@ const routes = [
                 }
             },
             {
-                path: 'classBoard',
-                name: 'classBoard',
-                component: () => import("@/views/dashboard/ClassBoard.vue")
+                path: 'student',
+                name: 'student',
+                component: () => import("@/views/dashboard/Student.vue")
             },
             {
                 path: 'class',

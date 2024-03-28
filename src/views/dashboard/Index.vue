@@ -46,7 +46,7 @@
            v-for="index in courseBoxCount">
         <div class="course_three_btn">
           <div class="btn_style" @click="gotoClassBoard">班级看板</div>
-          <div class="btn_style">学生详情</div>
+          <div class="btn_style" @click="stuDetail">学生详情</div>
           <div class="btn_style">进入备课</div>
         </div>
         <!--班级及进度-->
@@ -195,6 +195,9 @@ export default {
   methods: {
     gotoClassBoard() {
       this.$router.push('/classBoard')
+    },
+    stuDetail() {
+      this.$router.push('/student')
     },
     setCourseBoxSize() {
       const windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
