@@ -78,7 +78,7 @@ export default {
   background-color: #fff;
   overflow-y: auto;
   border-radius: 8px;
-  min-height: calc(100vh - 100px - 60px);
+  min-height: calc(100vh - 100px - 40px);
   flex-direction: column;
 }
 

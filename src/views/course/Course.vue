@@ -209,6 +209,9 @@ export default {
     }
   },
   methods: {
+    gotoCourseIntroduction() {
+      this.$router.push('/courseDetail')
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
